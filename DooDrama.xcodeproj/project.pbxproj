@@ -15,6 +15,7 @@
 		18FE10E619F64FC700CBAE85 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18FE10E519F64FC700CBAE85 /* Images.xcassets */; };
 		18FE10E919F64FC700CBAE85 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18FE10E719F64FC700CBAE85 /* LaunchScreen.xib */; };
 		18FE10F519F64FC700CBAE85 /* DooDramaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE10F419F64FC700CBAE85 /* DooDramaTests.m */; };
+		18FE110119F6503C00CBAE85 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE110019F6503C00CBAE85 /* CoreDataManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,8 @@
 		18FE10EE19F64FC700CBAE85 /* DooDramaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DooDramaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18FE10F319F64FC700CBAE85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18FE10F419F64FC700CBAE85 /* DooDramaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DooDramaTests.m; sourceTree = "<group>"; };
+		18FE10FF19F6503C00CBAE85 /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
+		18FE110019F6503C00CBAE85 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +91,7 @@
 				18FE10DF19F64FC700CBAE85 /* ViewController.h */,
 				18FE10E019F64FC700CBAE85 /* ViewController.m */,
 				18FE10E219F64FC700CBAE85 /* Main.storyboard */,
+				18FE10FE19F6500E00CBAE85 /* CoreData */,
 				18FE10E519F64FC700CBAE85 /* Images.xcassets */,
 				18FE10E719F64FC700CBAE85 /* LaunchScreen.xib */,
 				18FE10DC19F64FC700CBAE85 /* DooDrama.xcdatamodeld */,
@@ -120,6 +124,15 @@
 				18FE10F319F64FC700CBAE85 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		18FE10FE19F6500E00CBAE85 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				18FE10FF19F6503C00CBAE85 /* CoreDataManager.h */,
+				18FE110019F6503C00CBAE85 /* CoreDataManager.m */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,6 +238,7 @@
 				18FE10DE19F64FC700CBAE85 /* DooDrama.xcdatamodeld in Sources */,
 				18FE10DB19F64FC700CBAE85 /* AppDelegate.m in Sources */,
 				18FE10E119F64FC700CBAE85 /* ViewController.m in Sources */,
+				18FE110119F6503C00CBAE85 /* CoreDataManager.m in Sources */,
 				18FE10D819F64FC700CBAE85 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
