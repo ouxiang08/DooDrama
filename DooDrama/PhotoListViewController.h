@@ -11,5 +11,6 @@
 @interface PhotoListViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UITableView *photoListTabeView;
+@property (strong, nonatomic) NSMutableArray *photoList;
 
 @end

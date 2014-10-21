@@ -20,6 +20,7 @@
 		18FE110719F6549300CBAE85 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE110619F6549300CBAE85 /* Photo.m */; };
 		18FE110A19F6555000CBAE85 /* PhotoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE110919F6555000CBAE85 /* PhotoListViewController.m */; };
 		18FE110D19F65D8600CBAE85 /* FileTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE110C19F65D8600CBAE85 /* FileTools.m */; };
+		18FE111119F6647F00CBAE85 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18FE111019F6647F00CBAE85 /* MobileCoreServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		18FE110C19F65D8600CBAE85 /* FileTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileTools.m; sourceTree = "<group>"; };
 		18FE110E19F6630600CBAE85 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		18FE110F19F6630700CBAE85 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		18FE111019F6647F00CBAE85 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18FE111119F6647F00CBAE85 /* MobileCoreServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +85,7 @@
 		18FE10C919F64FC600CBAE85 = {
 			isa = PBXGroup;
 			children = (
+				18FE111019F6647F00CBAE85 /* MobileCoreServices.framework */,
 				18FE10D419F64FC700CBAE85 /* DooDrama */,
 				18FE10F119F64FC700CBAE85 /* DooDramaTests */,
 				18FE10D319F64FC700CBAE85 /* Products */,

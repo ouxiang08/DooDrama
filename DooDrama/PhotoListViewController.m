@@ -7,8 +7,12 @@
 //
 
 #import "PhotoListViewController.h"
+#import "CoreDataManager.h"
+#import "Photo.h"
 
 @interface PhotoListViewController ()<UITableViewDataSource, UITableViewDelegate>
+
+
 
 @end
 
@@ -16,13 +20,41 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    CoreDataManager *photoDataManager = [[CoreDataManager alloc] init];
+    photoDataManager.entityName = kPhotoEntityName;
+    
+    self.photoList = [NSMutableArray arrayWithArray:[photoDataManager query]];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+
+    return [self.photoList count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    static NSString *cellIdentifier = @"cellIdentifier";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if (cell==nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    Photo *photo = [self.photoList objectAtIndex:indexPath.row];
+    
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
 
 /*
 #pragma mark - Navigation
