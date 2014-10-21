@@ -1,0 +1,21 @@
+
+/* Class = "IBUIButton"; normalTitle = "下一张"; ObjectID = "6o8-Zm-FA6"; */
+"6o8-Zm-FA6.normalTitle" = "下一张";
+
+/* Class = "IBUIViewController"; title = "PhotoList"; ObjectID = "XXo-sL-bcc"; */
+"XXo-sL-bcc.title" = "PhotoList";
+
+/* Class = "IBUIViewController"; title = "TakePhoto"; ObjectID = "b3j-6A-bi1"; */
+"b3j-6A-bi1.title" = "TakePhoto";
+
+/* Class = "IBUITabBarItem"; title = "Item 1"; ObjectID = "cMq-ca-dMm"; */
+"cMq-ca-dMm.title" = "Item 1";
+
+/* Class = "IBUIButton"; normalTitle = "拍照"; ObjectID = "h8C-Ao-zwi"; */
+"h8C-Ao-zwi.normalTitle" = "拍照";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "kIc-Hj-0pI"; */
+"kIc-Hj-0pI.text" = "Label";
+
+/* Class = "IBUITabBarItem"; title = "Item 2"; ObjectID = "xjw-vi-HiZ"; */
+"xjw-vi-HiZ.title" = "Item 2";

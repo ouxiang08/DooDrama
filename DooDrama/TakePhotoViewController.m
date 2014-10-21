@@ -8,10 +8,12 @@
 
 #import "TakePhotoViewController.h"
 #import "CoreDataManager.h"
+#import "FileTools.h"
 
 @interface TakePhotoViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>{
 
     CoreDataManager *_coreDataManaer;
+    NSError *error;
 }
 
 @end
@@ -48,6 +50,27 @@
     
 }
 - (IBAction)uploadPhoto:(id)sender {
+    
+    NSString *serialNum = [[NSUserDefaults standardUserDefaults] objectForKey:@"playNum"];
+    NSString *fileName = nil;
+    if (!serialNum) {
+        fileName = [NSString stringWithFormat:@"play%@",@"1"];
+        [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"playNum"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }else{
+        fileName = [NSString stringWithFormat:@"play%@",serialNum];
+    }
+    
+    NSString *filePath  = [NSString stringWithFormat:@"%@/%@",[FileTools getDocPath],fileName];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        BOOL success = [[NSFileManager defaultManager] createDirectoryAtPath:filePath withIntermediateDirectories:NO attributes:nil error:nil];
+        if(!success){
+            NSLog(@"Error %@",  error);
+        }else{
+            NSLog(@"Success");
+        }
+    }
+    
     
 }
 

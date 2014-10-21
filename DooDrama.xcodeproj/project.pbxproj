@@ -19,6 +19,7 @@
 		18FE110419F6549200CBAE85 /* Catalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE110319F6549200CBAE85 /* Catalog.m */; };
 		18FE110719F6549300CBAE85 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE110619F6549300CBAE85 /* Photo.m */; };
 		18FE110A19F6555000CBAE85 /* PhotoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE110919F6555000CBAE85 /* PhotoListViewController.m */; };
+		18FE110D19F65D8600CBAE85 /* FileTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE110C19F65D8600CBAE85 /* FileTools.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,10 @@
 		18FE110619F6549300CBAE85 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		18FE110819F6555000CBAE85 /* PhotoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoListViewController.h; sourceTree = "<group>"; };
 		18FE110919F6555000CBAE85 /* PhotoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoListViewController.m; sourceTree = "<group>"; };
+		18FE110B19F65D8600CBAE85 /* FileTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileTools.h; sourceTree = "<group>"; };
+		18FE110C19F65D8600CBAE85 /* FileTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileTools.m; sourceTree = "<group>"; };
+		18FE110E19F6630600CBAE85 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		18FE110F19F6630700CBAE85 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +112,8 @@
 				18FE10E719F64FC700CBAE85 /* LaunchScreen.xib */,
 				18FE10DC19F64FC700CBAE85 /* DooDrama.xcdatamodeld */,
 				18FE10D519F64FC700CBAE85 /* Supporting Files */,
+				18FE110B19F65D8600CBAE85 /* FileTools.h */,
+				18FE110C19F65D8600CBAE85 /* FileTools.m */,
 			);
 			path = DooDrama;
 			sourceTree = "<group>";
@@ -254,6 +261,7 @@
 				18FE110A19F6555000CBAE85 /* PhotoListViewController.m in Sources */,
 				18FE10DE19F64FC700CBAE85 /* DooDrama.xcdatamodeld in Sources */,
 				18FE10DB19F64FC700CBAE85 /* AppDelegate.m in Sources */,
+				18FE110D19F65D8600CBAE85 /* FileTools.m in Sources */,
 				18FE10E119F64FC700CBAE85 /* TakePhotoViewController.m in Sources */,
 				18FE110119F6503C00CBAE85 /* CoreDataManager.m in Sources */,
 				18FE10D819F64FC700CBAE85 /* main.m in Sources */,
@@ -284,6 +292,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				18FE10E319F64FC700CBAE85 /* Base */,
+				18FE110E19F6630600CBAE85 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -292,6 +301,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				18FE10E819F64FC700CBAE85 /* Base */,
+				18FE110F19F6630700CBAE85 /* zh-Hans */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
