@@ -9,10 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-//#define kChatHistoryEntityName @"ChatHistory"
-//#define kChatSummaryEntityName @"ChatSummary"
-//#define kNewsEntityName @"News"
-//#define kNewsRecoredEntityName @"NewsRecord"
+#define kPhotoEntityName @"Photo"
+#define kCatelogEntityName @"Caltelog"
+
 
 @interface CoreDataManager : NSObject
 

@@ -7,7 +7,7 @@
         <!--PhotoList-->
         <scene sceneID="8TC-BP-NKk">
             <objects>
-                <viewController title="PhotoList" id="XXo-sL-bcc" sceneMemberID="viewController">
+                <viewController title="PhotoList" id="XXo-sL-bcc" customClass="PhotoListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lrh-0G-yiq"/>
                         <viewControllerLayoutGuide type="bottom" id="8ly-RF-EsY"/>
@@ -15,9 +15,22 @@
                     <view key="view" contentMode="scaleToFill" id="icZ-hG-ySn">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1cf-p7-Xye">
+                                <rect key="frame" x="0.0" y="-49" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="XXo-sL-bcc" id="pHu-JG-DxE"/>
+                                    <outlet property="delegate" destination="XXo-sL-bcc" id="gk2-Co-jcz"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 2" id="xjw-vi-HiZ"/>
+                    <connections>
+                        <outlet property="photoListTabeView" destination="1cf-p7-Xye" id="gXm-cF-ypS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J9a-KC-5fd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -26,7 +39,7 @@
         <!--TakePhoto-->
         <scene sceneID="OnE-XI-ENZ">
             <objects>
-                <viewController title="TakePhoto" id="b3j-6A-bi1" sceneMemberID="viewController">
+                <viewController title="TakePhoto" id="b3j-6A-bi1" customClass="TakePhotoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bGh-Ig-S6A"/>
                         <viewControllerLayoutGuide type="bottom" id="0NO-3m-bKg"/>
@@ -34,9 +47,46 @@
                     <view key="view" contentMode="scaleToFill" id="e0g-J2-dW8">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kIc-Hj-0pI">
+                                <rect key="frame" x="228" y="33" width="144" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CKE-kC-0oJ">
+                                <rect key="frame" x="180" y="93" width="240" height="198"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h8C-Ao-zwi">
+                                <rect key="frame" x="193" y="381" width="100" height="30"/>
+                                <state key="normal" title="拍照">
+                                    <color key="titleColor" red="0.8980392814" green="0.8980392814" blue="0.8980392814" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="takePhoto:" destination="b3j-6A-bi1" eventType="touchUpInside" id="nJL-TS-ajf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6o8-Zm-FA6">
+                                <rect key="frame" x="344" y="381" width="100" height="30"/>
+                                <state key="normal" title="下一张">
+                                    <color key="titleColor" red="0.8980392814" green="0.8980392814" blue="0.8980392814" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="uploadPhoto:" destination="b3j-6A-bi1" eventType="touchUpInside" id="Gbc-Y5-PV4"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="cMq-ca-dMm"/>
+                    <connections>
+                        <outlet property="imgV" destination="CKE-kC-0oJ" id="k1J-nA-wzV"/>
+                        <outlet property="takePhotoBtn" destination="h8C-Ao-zwi" id="ITj-XK-Uds"/>
+                        <outlet property="titLbl" destination="kIc-Hj-0pI" id="35o-vv-pqN"/>
+                        <outlet property="uploadPhotoBtn" destination="6o8-Zm-FA6" id="W1z-ez-bi9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ha1-mN-nsp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

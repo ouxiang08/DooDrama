@@ -10,12 +10,15 @@
 		18FE10D819F64FC700CBAE85 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE10D719F64FC700CBAE85 /* main.m */; };
 		18FE10DB19F64FC700CBAE85 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE10DA19F64FC700CBAE85 /* AppDelegate.m */; };
 		18FE10DE19F64FC700CBAE85 /* DooDrama.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18FE10DC19F64FC700CBAE85 /* DooDrama.xcdatamodeld */; };
-		18FE10E119F64FC700CBAE85 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE10E019F64FC700CBAE85 /* ViewController.m */; };
+		18FE10E119F64FC700CBAE85 /* TakePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE10E019F64FC700CBAE85 /* TakePhotoViewController.m */; };
 		18FE10E419F64FC700CBAE85 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18FE10E219F64FC700CBAE85 /* Main.storyboard */; };
 		18FE10E619F64FC700CBAE85 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18FE10E519F64FC700CBAE85 /* Images.xcassets */; };
 		18FE10E919F64FC700CBAE85 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18FE10E719F64FC700CBAE85 /* LaunchScreen.xib */; };
 		18FE10F519F64FC700CBAE85 /* DooDramaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE10F419F64FC700CBAE85 /* DooDramaTests.m */; };
 		18FE110119F6503C00CBAE85 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE110019F6503C00CBAE85 /* CoreDataManager.m */; };
+		18FE110419F6549200CBAE85 /* Catalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE110319F6549200CBAE85 /* Catalog.m */; };
+		18FE110719F6549300CBAE85 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE110619F6549300CBAE85 /* Photo.m */; };
+		18FE110A19F6555000CBAE85 /* PhotoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE110919F6555000CBAE85 /* PhotoListViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,8 +38,8 @@
 		18FE10D919F64FC700CBAE85 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		18FE10DA19F64FC700CBAE85 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		18FE10DD19F64FC700CBAE85 /* DooDrama.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DooDrama.xcdatamodel; sourceTree = "<group>"; };
-		18FE10DF19F64FC700CBAE85 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		18FE10E019F64FC700CBAE85 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		18FE10DF19F64FC700CBAE85 /* TakePhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TakePhotoViewController.h; sourceTree = "<group>"; };
+		18FE10E019F64FC700CBAE85 /* TakePhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TakePhotoViewController.m; sourceTree = "<group>"; };
 		18FE10E319F64FC700CBAE85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		18FE10E519F64FC700CBAE85 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		18FE10E819F64FC700CBAE85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -45,6 +48,12 @@
 		18FE10F419F64FC700CBAE85 /* DooDramaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DooDramaTests.m; sourceTree = "<group>"; };
 		18FE10FF19F6503C00CBAE85 /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
 		18FE110019F6503C00CBAE85 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
+		18FE110219F6549200CBAE85 /* Catalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Catalog.h; sourceTree = "<group>"; };
+		18FE110319F6549200CBAE85 /* Catalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Catalog.m; sourceTree = "<group>"; };
+		18FE110519F6549300CBAE85 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		18FE110619F6549300CBAE85 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		18FE110819F6555000CBAE85 /* PhotoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoListViewController.h; sourceTree = "<group>"; };
+		18FE110919F6555000CBAE85 /* PhotoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,8 +97,10 @@
 			children = (
 				18FE10D919F64FC700CBAE85 /* AppDelegate.h */,
 				18FE10DA19F64FC700CBAE85 /* AppDelegate.m */,
-				18FE10DF19F64FC700CBAE85 /* ViewController.h */,
-				18FE10E019F64FC700CBAE85 /* ViewController.m */,
+				18FE10DF19F64FC700CBAE85 /* TakePhotoViewController.h */,
+				18FE10E019F64FC700CBAE85 /* TakePhotoViewController.m */,
+				18FE110819F6555000CBAE85 /* PhotoListViewController.h */,
+				18FE110919F6555000CBAE85 /* PhotoListViewController.m */,
 				18FE10E219F64FC700CBAE85 /* Main.storyboard */,
 				18FE10FE19F6500E00CBAE85 /* CoreData */,
 				18FE10E519F64FC700CBAE85 /* Images.xcassets */,
@@ -129,6 +140,10 @@
 		18FE10FE19F6500E00CBAE85 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				18FE110519F6549300CBAE85 /* Photo.h */,
+				18FE110619F6549300CBAE85 /* Photo.m */,
+				18FE110219F6549200CBAE85 /* Catalog.h */,
+				18FE110319F6549200CBAE85 /* Catalog.m */,
 				18FE10FF19F6503C00CBAE85 /* CoreDataManager.h */,
 				18FE110019F6503C00CBAE85 /* CoreDataManager.m */,
 			);
@@ -235,11 +250,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18FE110719F6549300CBAE85 /* Photo.m in Sources */,
+				18FE110A19F6555000CBAE85 /* PhotoListViewController.m in Sources */,
 				18FE10DE19F64FC700CBAE85 /* DooDrama.xcdatamodeld in Sources */,
 				18FE10DB19F64FC700CBAE85 /* AppDelegate.m in Sources */,
-				18FE10E119F64FC700CBAE85 /* ViewController.m in Sources */,
+				18FE10E119F64FC700CBAE85 /* TakePhotoViewController.m in Sources */,
 				18FE110119F6503C00CBAE85 /* CoreDataManager.m in Sources */,
 				18FE10D819F64FC700CBAE85 /* main.m in Sources */,
+				18FE110419F6549200CBAE85 /* Catalog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
