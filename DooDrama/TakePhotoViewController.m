@@ -8,6 +8,7 @@
 
 #import "TakePhotoViewController.h"
 #import "CoreDataManager.h"
+#import "UIImage+Additions.h"
 #import "FileTools.h"
 #import "Photo.h"
 #import "Catalog.h"
@@ -115,14 +116,16 @@
     
     CoreDataManager *photoManager = _fileCoreDataManaer;
     
-    NSData *data;
+    UIImage *scaleImage = [[image fixOrientation] scaleToFixedSize:CGSizeMake(1000,1000)];
+    NSData *data = UIImageJPEGRepresentation(scaleImage, 0.50);
+    
 //    if (UIImagePNGRepresentation(image)) {
 //        data = UIImageJPEGRepresentation(image, 0.75);
 //    }else{
 //    
 //        data = UIImagePNGRepresentation(image);
 //    }
-     data = UIImageJPEGRepresentation(image, 0.75);
+
     
     //文件夹
     serialNum = [[NSUserDefaults standardUserDefaults] objectForKey:@"playNum"];

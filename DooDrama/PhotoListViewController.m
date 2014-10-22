@@ -12,14 +12,17 @@
 #import "AFURLSessionManager.h"
 #import "ToastViewAlert.h"
 #import "Photo.h"
+#import "MokaIndicatorView.h"
 #import "MBProgressHUD.h"
 
 #define DefualtHomeUrl @"http://prj.morework.cn/film"
-
+#define KScreenBounds [[UIScreen mainScreen] bounds]
 
 @interface PhotoListViewController ()<UITableViewDataSource, UITableViewDelegate>{
 
     CoreDataManager *photoDataManager;
+    MokaIndicatorView *_mokaIndicator;
+    int _iCountUploadSuccess;
 }
 
 
@@ -42,6 +45,8 @@
     
     photoDataManager = [[CoreDataManager alloc] init];
     photoDataManager.entityName = kPhotoEntityName;
+    
+    _mokaIndicator = [[MokaIndicatorView alloc] initWithFrame:KScreenBounds];
     
     //NSPredicate *predicate = [NSPredicate predicateWithFormat:@""];
     self.navigationItem.title = @"待上传的图片列表";
@@ -67,6 +72,8 @@
         for (Photo *photo in self.seletedPhotoList) {
             
             if (![photo isKindOfClass:[NSNull class]]) {
+                
+                 _iCountUploadSuccess++;
                  NSString *urlStr = [NSString stringWithFormat:@"%@/index.php/photo/post",DefualtHomeUrl];
                 NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
                 [parameters setObject:photo.pname forKey:@"photo"];
@@ -79,17 +86,25 @@
                 } error:nil];
                 
                 AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+                //manager.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", nil];
                 NSProgress *progress = nil;
+                
+                 _mokaIndicator.labelHint.text =[NSString stringWithFormat:@"正在上传第%d张", _iCountUploadSuccess];
                 
                 NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
                     if (error) {
                         NSLog(@"Error: %@", error);
+                        [_mokaIndicator stop];
                     } else {
                         NSLog(@"%@ %@", response, responseObject);
                        [self modifyPhotoInfo:photo];
+                        [_mokaIndicator stop];
                     }
                 }];
                 [uploadTask resume];
+                
+                [self.view.window addSubview:_mokaIndicator];
+                [_mokaIndicator start];
             }
         }
     }

@@ -29,6 +29,8 @@
 		1839DDFA19F7599A005690B3 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1839DDE419F7599A005690B3 /* UIRefreshControl+AFNetworking.m */; };
 		1839DDFB19F7599A005690B3 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1839DDE619F7599A005690B3 /* UIWebView+AFNetworking.m */; };
 		1839DDFF19F78591005690B3 /* ToastViewAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 1839DDFE19F78591005690B3 /* ToastViewAlert.m */; };
+		18B12CAD19F7C947002DFC0F /* MokaIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B12CAB19F7C947002DFC0F /* MokaIndicatorView.m */; };
+		18B12CB119F7CD22002DFC0F /* UIImage+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B12CB019F7CD22002DFC0F /* UIImage+Additions.m */; };
 		18FE10D819F64FC700CBAE85 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE10D719F64FC700CBAE85 /* main.m */; };
 		18FE10DB19F64FC700CBAE85 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE10DA19F64FC700CBAE85 /* AppDelegate.m */; };
 		18FE10DE19F64FC700CBAE85 /* DooDrama.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18FE10DC19F64FC700CBAE85 /* DooDrama.xcdatamodeld */; };
@@ -98,6 +100,10 @@
 		1839DDE619F7599A005690B3 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		1839DDFD19F78591005690B3 /* ToastViewAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastViewAlert.h; sourceTree = "<group>"; };
 		1839DDFE19F78591005690B3 /* ToastViewAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastViewAlert.m; sourceTree = "<group>"; };
+		18B12CAA19F7C947002DFC0F /* MokaIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MokaIndicatorView.h; sourceTree = "<group>"; };
+		18B12CAB19F7C947002DFC0F /* MokaIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MokaIndicatorView.m; sourceTree = "<group>"; };
+		18B12CAF19F7CD22002DFC0F /* UIImage+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Additions.h"; sourceTree = "<group>"; };
+		18B12CB019F7CD22002DFC0F /* UIImage+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Additions.m"; sourceTree = "<group>"; };
 		18FE10D219F64FC700CBAE85 /* DooDrama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DooDrama.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18FE10D619F64FC700CBAE85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18FE10D719F64FC700CBAE85 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -243,6 +249,10 @@
 		1839DDFC19F78587005690B3 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				18B12CAF19F7CD22002DFC0F /* UIImage+Additions.h */,
+				18B12CB019F7CD22002DFC0F /* UIImage+Additions.m */,
+				18B12CAA19F7C947002DFC0F /* MokaIndicatorView.h */,
+				18B12CAB19F7C947002DFC0F /* MokaIndicatorView.m */,
 				1839DDFD19F78591005690B3 /* ToastViewAlert.h */,
 				1839DDFE19F78591005690B3 /* ToastViewAlert.m */,
 			);
@@ -436,6 +446,7 @@
 				1839DDEA19F7599A005690B3 /* AFNetworkReachabilityManager.m in Sources */,
 				18FE110A19F6555000CBAE85 /* PhotoListViewController.m in Sources */,
 				1839DDEC19F7599A005690B3 /* AFURLConnectionOperation.m in Sources */,
+				18B12CB119F7CD22002DFC0F /* UIImage+Additions.m in Sources */,
 				1839DDF419F7599A005690B3 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				1839DDE719F7599A005690B3 /* AFHTTPRequestOperation.m in Sources */,
 				1839DDE919F7599A005690B3 /* AFHTTPSessionManager.m in Sources */,
@@ -457,6 +468,7 @@
 				18FE10E119F64FC700CBAE85 /* TakePhotoViewController.m in Sources */,
 				18FE110119F6503C00CBAE85 /* CoreDataManager.m in Sources */,
 				1839DDFB19F7599A005690B3 /* UIWebView+AFNetworking.m in Sources */,
+				18B12CAD19F7C947002DFC0F /* MokaIndicatorView.m in Sources */,
 				18FE10D819F64FC700CBAE85 /* main.m in Sources */,
 				18FE110419F6549200CBAE85 /* Catalog.m in Sources */,
 				1839DDF619F7599A005690B3 /* UIAlertView+AFNetworking.m in Sources */,
