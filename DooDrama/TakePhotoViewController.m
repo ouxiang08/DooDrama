@@ -10,10 +10,15 @@
 #import "CoreDataManager.h"
 #import "FileTools.h"
 #import "Photo.h"
+#import "Catalog.h"
 
 @interface TakePhotoViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>{
 
-    CoreDataManager *_coreDataManaer;
+    CoreDataManager *_fileCoreDataManaer;
+    CoreDataManager *_catalogCoreDataManaer;
+    
+    NSString *serialNum;
+    NSString *actNum;
     NSError *error;
 }
 
@@ -24,8 +29,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _coreDataManaer = [[CoreDataManager alloc] init];
-    _coreDataManaer.entityName = kPhotoEntityName;
+    serialNum = [[NSUserDefaults standardUserDefaults] objectForKey:@"playNum"];
+    actNum = [[NSUserDefaults standardUserDefaults] objectForKey:@"actNum"];
+    
+    if (serialNum) {
+        self.navigationItem.title = [NSString stringWithFormat:@"第%@场第%@幕",serialNum,actNum];
+    }else{
+        self.navigationItem.title = [NSString stringWithFormat:@"第1场第1幕"];
+    }
+    
+    _fileCoreDataManaer = [[CoreDataManager alloc] init];
+    _fileCoreDataManaer.entityName = kPhotoEntityName;
+    
+    
+    _catalogCoreDataManaer = [[CoreDataManager alloc] init];
+    _catalogCoreDataManaer.entityName = kCatelogEntityName;
+    
+    self.takePhotoBtn.layer.cornerRadius = 8.0f;
+    self.takePhotoBtn.backgroundColor = [UIColor blueColor];
+    
+    self.uploadPhotoBtn.layer.cornerRadius = 8.0f;
+    self.uploadPhotoBtn.backgroundColor = [UIColor blueColor];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,7 +62,11 @@
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
         picker.allowsEditing=NO;
+        
+        // 摄像头
+        [[UIApplication sharedApplication] setStatusBarHidden:YES];
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self presentViewController:picker animated:YES completion:^(void){}];
     }else {
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:@"Error"
@@ -51,7 +79,6 @@
     
 }
 - (IBAction)uploadPhoto:(id)sender {
-    
     
 }
 
@@ -86,24 +113,37 @@
 
 -(void)savaImgToLoacalFile:(UIImage *)image{
     
-    CoreDataManager *photoDataManager = _coreDataManaer;
+    CoreDataManager *photoManager = _fileCoreDataManaer;
     
     NSData *data;
-    if (UIImagePNGRepresentation(image)) {
-        data = UIImageJPEGRepresentation(image, 0.75);
-    }else{
-    
-        data = UIImagePNGRepresentation(image);
-    }
+//    if (UIImagePNGRepresentation(image)) {
+//        data = UIImageJPEGRepresentation(image, 0.75);
+//    }else{
+//    
+//        data = UIImagePNGRepresentation(image);
+//    }
+     data = UIImageJPEGRepresentation(image, 0.75);
     
     //文件夹
-    NSString *serialNum = [[NSUserDefaults standardUserDefaults] objectForKey:@"playNum"];
+    serialNum = [[NSUserDefaults standardUserDefaults] objectForKey:@"playNum"];
+    actNum = [[NSUserDefaults standardUserDefaults] objectForKey:@"actNum"];
+
     NSString *fileName = nil;
     if (!serialNum) {
-        fileName = [NSString stringWithFormat:@"play%@",@"1"];
-        [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"playNum"];
+        serialNum = @"1";
+        fileName = [NSString stringWithFormat:@"play%@",serialNum];
+        [[NSUserDefaults standardUserDefaults] setObject:serialNum forKey:@"playNum"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }else{
+        
+        if ([actNum isEqualToString:@"4"]) {
+            [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%d",[serialNum intValue]+1] forKey:@"playNum"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"actNum"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+        
         fileName = [NSString stringWithFormat:@"play%@",serialNum];
     }
     
@@ -119,26 +159,51 @@
     
     //图片
     NSString *imageName = nil;
-    NSString *actNum = [[NSUserDefaults standardUserDefaults] objectForKey:@"actNum"];
-    if (!serialNum) {
-        imageName = [NSString stringWithFormat:@"play%@",@"1"];
+    
+    if (!actNum) {
+        actNum = @"1";
+        imageName = [NSString stringWithFormat:@"act%@.jpg",actNum];
         [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"actNum"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }else{
-        imageName = [NSString stringWithFormat:@"play%@",actNum];
+        imageName = [NSString stringWithFormat:@"act%d.jpg",[actNum intValue]+1];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%d",[actNum intValue]+1] forKey:@"actNum"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
+    
+    self.navigationItem.title = [NSString stringWithFormat:@"第%@场第%@幕",serialNum,actNum];
+    
     NSString *imagePath = [NSString stringWithFormat:@"%@/%@",filePath,imageName];
     BOOL result = [[NSFileManager defaultManager] createFileAtPath:imagePath contents:data attributes:nil];
     if (result) {
-        Photo *photo = [[Photo alloc] init];
+        Photo *photo = [NSEntityDescription insertNewObjectForEntityForName:photoManager.entityName inManagedObjectContext:photoManager.managedObjectContext];
         photo.pid = [NSNumber numberWithInt:[serialNum intValue]];
         photo.pname = imageName;
         photo.ppath = imagePath;
         photo.pdoc = filePath;
         
-        photoDataManager.managedObject = photo;
-        [photoDataManager insert];
+        photoManager.managedObject = photo;
+        [photoManager insert];
     }
 }
+
+- (NSArray *)getPlayCatelog{
+
+    CoreDataManager *cagelogManager = _catalogCoreDataManaer;
+    NSArray *cagelogList = [cagelogManager query];
+    return cagelogList;
+}
+
+- (void)addCatelogInfo:(Catalog *)catalog{
+    CoreDataManager *cagelogManager = _catalogCoreDataManaer;
+
+    
+}
+
+- (void)updaeCateInfo:(Catalog *)catalog{
+    CoreDataManager *cagelogManager = _catalogCoreDataManaer;
+    
+}
+
 
 @end

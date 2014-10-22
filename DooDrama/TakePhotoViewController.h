@@ -11,7 +11,6 @@
 
 @interface TakePhotoViewController : UIViewController
 
-@property (strong, nonatomic) IBOutlet UILabel *titLbl;
 @property (strong, nonatomic) IBOutlet UIImageView *imgV;
 @property (strong, nonatomic) IBOutlet UIButton *takePhotoBtn;
 @property (strong, nonatomic) IBOutlet UIButton *uploadPhotoBtn;

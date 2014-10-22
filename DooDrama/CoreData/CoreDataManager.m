@@ -77,9 +77,15 @@
     return YES;
 }
 
-- (void)update{
+- (BOOL)update{
 
-    
+    NSError *error = nil;
+    BOOL result = [self.managedObjectContext save:&error];
+    if (error) {
+        NSLog(@"save core data error: %@, %@", error.localizedDescription, error.userInfo);
+        abort();
+    }
+    return result;
 }
 
 - (NSArray *)query{

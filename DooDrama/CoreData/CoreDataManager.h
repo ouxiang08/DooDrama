@@ -32,7 +32,7 @@
 
 - (NSArray *)queryWithLimit:(NSUInteger)limit andOffset:(NSUInteger)offset;
 
-- (void)update;
+- (BOOL)update;
 
 - (NSManagedObjectContext *)managedObjectContext;
 
