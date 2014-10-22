@@ -1,6 +1,4 @@
-^{
-    <#code#>
-}//
+//
 //  PhotoListViewController.m
 //  DooDrama
 //
@@ -14,8 +12,9 @@
 #import "AFURLSessionManager.h"
 #import "ToastViewAlert.h"
 #import "Photo.h"
+#import "MBProgressHUD.h"
 
-#define DefualtHomeUrl @"http://example.com/upload"
+#define DefualtHomeUrl @"http://prj.morework.cn/film"
 
 
 @interface PhotoListViewController ()<UITableViewDataSource, UITableViewDelegate>{
@@ -34,20 +33,7 @@
     [super viewWillAppear:animated];
     self.photoList = [NSMutableArray arrayWithArray:[photoDataManager query]];
     [self.photoListTabeView reloadData];
-    
-    int multiplier = 7;
-    int (^myBlock)(int) = ^(int num) {
-        return num * multiplier;
-    };
-    
-    
-    void(^loggerBlock)(NSString *) = ^(NSString *){
-    
-        
-    };
-    
-    printf("%d", myBlock(3));
-    // prints "21"
+
 
 }
 
@@ -76,61 +62,64 @@
 
 - (void)uploadPic{
     
-//    if (self.seletedPhotoList.count>0) {
-//    
-//        for (Photo *photo in self.seletedPhotoList) {
-//            if (![photo isKindOfClass:[NSNull class]]) {
-//                
-//                NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:DefualtHomeUrl parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-//                    [formData appendPartWithFileURL:[NSURL fileURLWithPath:photo.ppath] name:@"file" fileName:photo.pname mimeType:@"image/jpeg" error:nil];
-//                } error:nil];
-//                
-//                AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-//                NSProgress *progress = nil;
-//                
-//                NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-//                    if (error) {
-//                        NSLog(@"Error: %@", error);
-//                    } else {
-//                        NSLog(@"%@ %@", response, responseObject);
-//                        [self deleteImageFile:photo.ppath];
-//                    }
-//                }];
-//                [uploadTask resume];
-//            }
-//        }
-//
-//    }else{
-//    
-//        [[ToastViewAlert defaultCenter] postAlertWithMessage:@"请选择要上传的图片！"];
-//    }
-//
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_apply(self.seletedPhotoList.count, queue, ^(size_t i) {
-        
-        Photo *photo = [self.seletedPhotoList objectAtIndex:i];
-        if (![photo isKindOfClass:[NSNull class]]) {
+    if (self.seletedPhotoList.count>0) {
+    
+        for (Photo *photo in self.seletedPhotoList) {
             
-            NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:DefualtHomeUrl parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-                [formData appendPartWithFileURL:[NSURL fileURLWithPath:photo.ppath] name:@"file" fileName:photo.pname mimeType:@"image/jpeg" error:nil];
-            } error:nil];
-            
-            AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-            NSProgress *progress = nil;
-            
-            NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-                if (error) {
-                    NSLog(@"Error: %@", error);
-                } else {
-                    NSLog(@"%@ %@", response, responseObject);
-                    [self modifyPhotoInfo:photo];
-                }
-            }];
-            [uploadTask resume];
-            
-            //[self.photoListTabeView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]].accessoryView = progress;
+            if (![photo isKindOfClass:[NSNull class]]) {
+                 NSString *urlStr = [NSString stringWithFormat:@"%@/index.php/photo/post",DefualtHomeUrl];
+                NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+                [parameters setObject:photo.pname forKey:@"photo"];
+                [parameters setObject:@"1" forKey:@"content"];
+                [parameters setObject:@"1" forKey:@"stageid"];
+                [parameters setObject:photo.pid forKey:@"photoid"];
+                [parameters setObject:@"20141022" forKey:@"time"];
+                NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlStr parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                    [formData appendPartWithFileURL:[NSURL fileURLWithPath:photo.ppath] name:@"file" fileName:photo.pname mimeType:@"image/jpeg" error:nil];
+                } error:nil];
+                
+                AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+                NSProgress *progress = nil;
+                
+                NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+                    if (error) {
+                        NSLog(@"Error: %@", error);
+                    } else {
+                        NSLog(@"%@ %@", response, responseObject);
+                       [self modifyPhotoInfo:photo];
+                    }
+                }];
+                [uploadTask resume];
+            }
         }
-    });
+    }
+//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//    dispatch_apply(self.seletedPhotoList.count, queue, ^(size_t i) {
+//        
+//        Photo *photo = [self.seletedPhotoList objectAtIndex:i];
+//        if (![photo isKindOfClass:[NSNull class]]) {
+//            
+//            NSString *urlStr = [NSString stringWithFormat:@"%@/index.php/photo/postphoto=%@&content=1&stageid=1&photoid=1&time=20141022",DefualtHomeUrl,photo.pname];
+//            NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlStr parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//                [formData appendPartWithFileURL:[NSURL fileURLWithPath:photo.ppath] name:@"file" fileName:photo.pname mimeType:@"image/jpeg" error:nil];
+//            } error:nil];
+//            
+//            AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+//            NSProgress *progress = nil;
+//            
+//            NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+//                if (error) {
+//                    NSLog(@"Error: %@", error);
+//                } else {
+//                    NSLog(@"%@ %@", response, responseObject);
+//                    [self modifyPhotoInfo:photo];
+//                }
+//            }];
+//            [uploadTask resume];
+//        
+//            [self.photoListTabeView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]].accessoryView = progress;
+//        }
+//    });
 }
 
 - (void)modifyPhotoInfo:(Photo *)photo{
