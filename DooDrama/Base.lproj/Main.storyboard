@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2yd-S8-eP0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2yd-S8-eP0">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--PhotoList-->
@@ -130,7 +131,6 @@
         <!--PhotoList-->
         <scene sceneID="sdS-ft-kpE">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RDy-7a-3Ju" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="aQk-83-XEu" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="PhotoList" id="nJg-L7-O8K"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -142,6 +142,7 @@
                         <segue destination="XXo-sL-bcc" kind="relationship" relationship="rootViewController" id="e3v-i0-3hB"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RDy-7a-3Ju" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-442" y="749"/>
         </scene>

@@ -14,6 +14,7 @@
 #import "Photo.h"
 #import "MokaIndicatorView.h"
 #import "MBProgressHUD.h"
+#import "AFHTTPRequestOperationManager.h"
 
 #define DefualtHomeUrl @"http://prj.morework.cn/film"
 #define KScreenBounds [[UIScreen mainScreen] bounds]
@@ -36,7 +37,6 @@
     [super viewWillAppear:animated];
     self.photoList = [NSMutableArray arrayWithArray:[photoDataManager query]];
     [self.photoListTabeView reloadData];
-
 
 }
 
@@ -73,7 +73,6 @@
             
             if (![photo isKindOfClass:[NSNull class]]) {
                 
-                 _iCountUploadSuccess++;
                  NSString *urlStr = [NSString stringWithFormat:@"%@/index.php/photo/post",DefualtHomeUrl];
                 NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
                 [parameters setObject:photo.pname forKey:@"photo"];
@@ -81,27 +80,31 @@
                 [parameters setObject:@"1" forKey:@"stageid"];
                 [parameters setObject:photo.pid forKey:@"photoid"];
                 [parameters setObject:@"20141022" forKey:@"time"];
+                
                 NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlStr parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                     [formData appendPartWithFileURL:[NSURL fileURLWithPath:photo.ppath] name:@"file" fileName:photo.pname mimeType:@"image/jpeg" error:nil];
                 } error:nil];
                 
-                AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-                //manager.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", nil];
-                NSProgress *progress = nil;
+                AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+                manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+                AFHTTPRequestOperation *operation =
+                [manager HTTPRequestOperationWithRequest:request
+                                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                                     NSLog(@"Success %@", responseObject);
+                                                     [_mokaIndicator stop];
+                                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                                     NSLog(@"%@",operation);
+                                                     NSLog(@"Failure %@", error.description);
+                                                     [_mokaIndicator stop];
+                                                 }];
                 
-                 _mokaIndicator.labelHint.text =[NSString stringWithFormat:@"正在上传第%d张", _iCountUploadSuccess];
-                
-                NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-                    if (error) {
-                        NSLog(@"Error: %@", error);
-                        [_mokaIndicator stop];
-                    } else {
-                        NSLog(@"%@ %@", response, responseObject);
-                       [self modifyPhotoInfo:photo];
-                        [_mokaIndicator stop];
-                    }
+                [operation setUploadProgressBlock:^(NSUInteger __unused bytesWritten,
+                                                    long long totalBytesWritten,
+                                                    long long totalBytesExpectedToWrite) {
+                    NSLog(@"Wrote %lld/%lld", totalBytesWritten, totalBytesExpectedToWrite);
                 }];
-                [uploadTask resume];
+
+                [operation start];
                 
                 [self.view.window addSubview:_mokaIndicator];
                 [_mokaIndicator start];
